@@ -1,0 +1,28 @@
+#pragma once
+
+#include <stdint.h>
+
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+
+#include "buzzer.h"
+#include "sound.h"
+
+namespace YOBA {
+	class AudioPlayer {
+		public:
+			AudioPlayer(Buzzer* buzzer);
+			void setup();
+			void play(const Sound* sound);
+
+		private:
+			Buzzer* _buzzer;
+			
+			TaskHandle_t _taskHandle = nullptr;
+			const Sound* _sound = nullptr;
+			size_t _playableIndex = 0;
+			int64_t _playableDeadline = 0;
+			
+			[[noreturn]] void onStart();
+	};
+}
