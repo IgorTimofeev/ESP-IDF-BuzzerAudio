@@ -1,5 +1,6 @@
 #pragma once
 
+#include <driver/gpio.h>
 #include <driver/ledc.h>
 #include <soc/soc.h>
 
