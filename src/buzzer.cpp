@@ -27,7 +27,7 @@ namespace YOBA {
 		channelConfig.gpio_num = _pin;
 		channelConfig.speed_mode = _LEDCMode;
 		channelConfig.channel = _LEDCChannel;
-		channelConfig.intr_type = LEDC_INTR_DISABLE;
+		// channelConfig.intr_type = LEDC_INTR_DISABLE;
 		channelConfig.timer_sel = _LEDCTimer;
 		channelConfig.duty = 0;
 		channelConfig.hpoint = 0;
