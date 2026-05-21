@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include <esp_err.h>
+#include <esp_log.h>
 
 namespace YOBA {
 	Buzzer::Buzzer(const gpio_num_t pin, const ledc_channel_t LEDCChannel, const ledc_timer_t LEDCTimer, const ledc_mode_t LEDCMode):
@@ -35,15 +36,11 @@ namespace YOBA {
 	}
 
 	void Buzzer::setState(const bool value) const {
-		//				ESP_LOGI("Speaker", "setDuty: %d", value);
-
 		ESP_ERROR_CHECK_WITHOUT_ABORT(ledc_set_duty(_LEDCMode, _LEDCChannel, value ? _dutyMax : 0));
 		ESP_ERROR_CHECK_WITHOUT_ABORT(ledc_update_duty(_LEDCMode, _LEDCChannel));
 	}
 
 	void Buzzer::setFrequency(const uint32_t value) const {
-		//				ESP_LOGI("Speaker", "setFrequency: %d", value);
-
 		ESP_ERROR_CHECK_WITHOUT_ABORT(ledc_set_freq(
 			_LEDCMode,
 			_LEDCTimer,
