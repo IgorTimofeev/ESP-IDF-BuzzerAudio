@@ -13,7 +13,7 @@ namespace YOBA {
 
 	void AudioPlayer::setup() {
 		_buzzer->setup();
-		
+
 		xTaskCreate(
 			[](void* arg) {
 				static_cast<AudioPlayer*>(arg)->onStart();
@@ -22,15 +22,17 @@ namespace YOBA {
 			4 * 1024,
 			this,
 			1,
-			&_taskHandle
+			nullptr
 		);
 	}
 	
 	void AudioPlayer::onStart() {
+		_playSemaphore = xSemaphoreCreateBinary();
+
 		while (true) {
 			// Waiting for sound
 			if (!_sound)
-				ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+				xSemaphoreTake(_playSemaphore, portMAX_DELAY);
 			
 			if (!_sound) {
 				ESP_LOGE("AudioPlayer", "sound is null");
@@ -75,8 +77,6 @@ namespace YOBA {
 		_playableIndex = 0;
 		_playableDeadline = 0;
 		
-		xTaskNotifyGive(_taskHandle);
+		xSemaphoreGive(_playSemaphore);
 	}
-
-
 }

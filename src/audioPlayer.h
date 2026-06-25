@@ -17,12 +17,12 @@ namespace YOBA {
 
 		private:
 			Buzzer* _buzzer;
-			
-			TaskHandle_t _taskHandle = nullptr;
+
+			SemaphoreHandle_t _playSemaphore = nullptr;
 			const Sound* _sound = nullptr;
 			size_t _playableIndex = 0;
 			int64_t _playableDeadline = 0;
-			
+
 			[[noreturn]] void onStart();
 	};
 }
