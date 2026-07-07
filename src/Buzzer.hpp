@@ -4,8 +4,6 @@
 #include <driver/ledc.h>
 #include <soc/soc.h>
 
-#include "sound.h"
-
 namespace YOBA {
 	class Buzzer {
 		public:

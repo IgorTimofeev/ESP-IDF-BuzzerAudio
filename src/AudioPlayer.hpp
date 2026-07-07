@@ -5,8 +5,8 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
-#include "buzzer.h"
-#include "sound.h"
+#include <Buzzer.hpp>
+#include <Sound.hpp>
 
 namespace YOBA {
 	class AudioPlayer {

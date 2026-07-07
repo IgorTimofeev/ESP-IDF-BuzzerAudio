@@ -1,9 +1,9 @@
-#include "buzzer.h"
-
 #include <algorithm>
 
 #include <esp_err.h>
 #include <esp_log.h>
+
+#include "Buzzer.hpp"
 
 namespace YOBA {
 	Buzzer::Buzzer(const gpio_num_t pin, const ledc_channel_t LEDCChannel, const ledc_timer_t LEDCTimer, const ledc_mode_t LEDCMode):

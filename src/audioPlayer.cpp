@@ -1,10 +1,8 @@
-#include <audioPlayer.h>
+#include <AudioPlayer.hpp>
 
 #include <esp_err.h>
 #include <esp_timer.h>
 #include <esp_log.h>
-
-#include <sound.h>
 
 namespace YOBA {
 	AudioPlayer::AudioPlayer(Buzzer* buzzer): _buzzer(buzzer) {
